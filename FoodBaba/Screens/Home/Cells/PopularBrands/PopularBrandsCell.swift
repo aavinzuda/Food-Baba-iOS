@@ -13,5 +13,12 @@ final class PopularBrandsCell: UITableViewCell {
     private let brands = MockDataManager.getPopularBrands()
     
     func initialSetup() {
+        if self.viewWithTag(102) == nil {
+            let popularBrandsCollectionView = PopularBrandsCollectionsView(brands: self.brands)
+            let hostedView = self.hostSwitftUIView(popularBrandsCollectionView)
+            hostedView.tag = 102
+        } else {
+            return
+        }
     }
 }

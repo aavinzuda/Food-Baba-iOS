@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6gv-jO-VzQ">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -50,33 +50,15 @@
                                     <action selector="didTapBackButton:" destination="ZQR-IG-IgK" eventType="touchUpInside" id="T58-ff-vdD"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Upd-vd-MVE">
-                                <rect key="frame" x="347" y="75" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="8Sr-jm-BFx"/>
-                                    <constraint firstAttribute="width" constant="30" id="asO-Tp-Hkt"/>
-                                </constraints>
-                                <color key="tintColor" systemColor="systemGrayColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" cornerStyle="capsule">
-                                    <imageReference key="image" image="heart" catalog="system" symbolScale="medium"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="bold"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="didTapHeartButton:" destination="ZQR-IG-IgK" eventType="touchUpInside" id="jga-k7-Fkt"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DQQ-7c-Zb8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Upd-vd-MVE" firstAttribute="top" secondItem="DQQ-7c-Zb8" secondAttribute="top" constant="16" id="9Ef-eO-e2o"/>
                             <constraint firstItem="DQQ-7c-Zb8" firstAttribute="trailing" secondItem="aar-J8-s0q" secondAttribute="trailing" constant="16" id="9LV-DK-mPv"/>
                             <constraint firstItem="YZi-s9-ZwH" firstAttribute="leading" secondItem="DQQ-7c-Zb8" secondAttribute="leading" id="CFP-ps-m3g"/>
                             <constraint firstItem="krm-gC-QJG" firstAttribute="leading" secondItem="DQQ-7c-Zb8" secondAttribute="leading" constant="16" id="IAI-7t-ndz"/>
                             <constraint firstItem="n01-6s-K1v" firstAttribute="leading" secondItem="DQQ-7c-Zb8" secondAttribute="leading" constant="16" id="Ivy-IX-0Uw"/>
                             <constraint firstItem="YZi-s9-ZwH" firstAttribute="trailing" secondItem="DQQ-7c-Zb8" secondAttribute="trailing" id="JrA-YD-ynv"/>
-                            <constraint firstItem="DQQ-7c-Zb8" firstAttribute="trailing" secondItem="Upd-vd-MVE" secondAttribute="trailing" constant="16" id="V0O-WL-wRJ"/>
                             <constraint firstItem="aar-J8-s0q" firstAttribute="top" secondItem="n01-6s-K1v" secondAttribute="bottom" constant="16" id="Xly-WT-dZh"/>
                             <constraint firstItem="aar-J8-s0q" firstAttribute="leading" secondItem="DQQ-7c-Zb8" secondAttribute="leading" constant="16" id="fwZ-Pc-Hvl"/>
                             <constraint firstItem="krm-gC-QJG" firstAttribute="top" secondItem="DQQ-7c-Zb8" secondAttribute="top" constant="16" id="n5F-sd-UOd"/>
@@ -87,7 +69,8 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="YZi-s9-ZwH" id="VRq-88-WWr"/>
-                        <outlet property="label" destination="n01-6s-K1v" id="UZ8-u2-eVG"/>
+                        <outlet property="subTitleLabel" destination="aar-J8-s0q" id="2Sp-Yg-K0B"/>
+                        <outlet property="titleLabel" destination="n01-6s-K1v" id="ddQ-Wi-IZl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T68-sD-9Te" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -188,7 +171,6 @@
     <resources>
         <image name="Category10" width="3376" height="3376"/>
         <image name="chevron.left" catalog="system" width="97" height="128"/>
-        <image name="heart" catalog="system" width="128" height="107"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

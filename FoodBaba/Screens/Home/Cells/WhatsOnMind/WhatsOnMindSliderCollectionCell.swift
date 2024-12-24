@@ -12,5 +12,13 @@ final class WhatsOnMindSliderCollectionCell: UITableViewCell {
     static let identifier: String = "WhatsOnMindSliderCollectionCell"
     
     func initialSetup() {
+        if self.viewWithTag(103) == nil {
+            let whatsOnMindGridView = WhatsOnMindGridView(categories: MockDataManager.getWhatsOnMindCategories())
+            
+            let hostedView = self.hostSwitftUIView(whatsOnMindGridView)
+            hostedView.tag = 103
+        } else {
+            return
+        }
     }
 }

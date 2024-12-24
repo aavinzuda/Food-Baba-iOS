@@ -13,5 +13,12 @@ final class ImagesSliderCollectionCell: UITableViewCell {
     static let identifier: String = "ImagesSliderCollectionCell"
     
     func initialSetup() {
+        if self.viewWithTag(101) == nil {
+            let imageSliderSwiftUIView = ImagesSliderView(images: [1, 2, 3, 4, 5, 6, 7])
+            let hostedView = self.hostSwitftUIView(imageSliderSwiftUIView)
+            hostedView.tag = 101
+        } else {
+            return
+        }
     }
 }
