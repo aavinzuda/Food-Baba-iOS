@@ -53,7 +53,7 @@ struct ImagesSliderView: View {
                 let isActive: Bool = self.selectedImageIndex == imageIndex
                 
                 Circle()
-                    .fill(isActive ? .black : .black.opacity(0.6))
+                    .fill(isActive ? Color.primary : Color.primary.opacity(0.6))
                     .frame(width: 10, height: 20)
                     .scaleEffect(x: isActive ? 1.0 : 0.7, y: isActive ? 1.0 : 0.7)
                     .onTapGesture { self.selectedImageIndex = imageIndex }

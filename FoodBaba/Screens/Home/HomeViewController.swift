@@ -160,7 +160,7 @@ extension HomeViewController {
 }
 
 
-    //MARK: - Preview
+//MARK: - Preview
 struct HomeViewController_Preview: PreviewProvider {
     static var previews: some View {
         Self.getUIViewControllerRepresentable(

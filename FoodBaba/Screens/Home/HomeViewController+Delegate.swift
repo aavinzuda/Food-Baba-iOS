@@ -42,7 +42,7 @@ extension HomeViewController: UITableViewDelegate {
         } else {
             UIView.animate(
                 withDuration: 1.0,
-                delay: 0.5,
+                delay: 0.3,
                 usingSpringWithDamping: 0.8,
                 initialSpringVelocity: 0.5,
                 options: .curveEaseInOut,

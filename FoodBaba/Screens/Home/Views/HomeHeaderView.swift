@@ -14,6 +14,8 @@ struct HomeHeaderView: View {
     
     @State private var updatingSearchItem: String = "Pizza"
     
+    @Environment(\.colorScheme) private var colorScheme
+    
     private let searchItems: [String] = [
         "Pizza", "Noodles", "Maggie", "Italian"
     ]
@@ -53,7 +55,7 @@ struct HomeHeaderView: View {
                 Text(viewModel.currentLocationShortName)
                     .font(.title3)
                     .fontWeight(.bold)
-                    .foregroundStyle(Color(.primary))
+                    .foregroundStyle(colorScheme == .light ? Color.primary : Color.white)
                 
                 Image(systemName: "chevron.down")
                     .resizable()
@@ -69,7 +71,7 @@ struct HomeHeaderView: View {
     private var locationLabel: some View {
         Text(viewModel.currentLocationFullName)
             .font(.footnote)
-            .foregroundStyle(Color(.secondary))
+            .foregroundStyle(colorScheme == .light ? Color.gray : Color.white.opacity(0.7))
     }
     
     
@@ -80,7 +82,7 @@ struct HomeHeaderView: View {
         } label: {
             Image(systemName: "person.circle.fill")
                 .resizable()
-                .foregroundStyle(.gray)
+                .foregroundStyle(colorScheme == .light ? Color.gray : Color.white)
                 .frame(width: 30, height: 30)
         }
     }
@@ -94,20 +96,20 @@ struct HomeHeaderView: View {
             
             ZStack {
                 RoundedRectangle(cornerRadius: 12.0)
-                    .fill(.gray.opacity(0.2))
+                    .fill(colorScheme == .light ? .gray.opacity(0.25) : .white.opacity(0.5))
                 
                 HStack {
                     Text("Search for '\(self.updatingSearchItem)'")
                         .font(.headline)
                         .fontWeight(.light)
-                        .foregroundStyle(Color(.secondary))
+                        .foregroundStyle(colorScheme == .light ? Color.secondary : Color.white)
                     
                     Spacer()
                     
                     HStack(spacing: 10) {
                         Image(systemName: "magnifyingglass")
                             .resizable()
-                            .foregroundStyle(.gray)
+                            .foregroundStyle(colorScheme == .light ? Color.gray : Color.white)
                             .frame(width: 15, height: 16)
                         
                         Rectangle()
