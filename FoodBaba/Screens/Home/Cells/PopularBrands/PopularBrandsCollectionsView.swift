@@ -22,7 +22,7 @@ struct PopularBrandsCollectionsView: View {
                 HStack(spacing: 10, content: {
                     ForEach(self.brands, id: \.id) { brand in
                         PopularBrandCellView(model: brand, onTapEvent: {
-                            let dataDict: [String: PopularBrandModel] = ["model": brand]
+                            let dataDict: [String: Any] = ["model": brand, "isZoomable": false]
                             NotificationCenter.default.post(name: Notification.Name("Present_Detail_Screen"), object: nil, userInfo: dataDict)
                         })
                         .frame(width: 140)
@@ -53,6 +53,8 @@ struct PopularBrandCellView: View {
     @State var model: PopularBrandModel
     let onTapEvent: CompletionHandler
     
+    @State private var isAnimate: Bool = false
+    
     var body: some View {
         VStack {
             ImageViewWithPrice(
@@ -61,9 +63,8 @@ struct PopularBrandCellView: View {
                 isFavourite: $model.isFavourite,
                 isAdvertise: model.isAdvertise
             )
-            .onTapGesture {
-                self.onTapEvent()
-            }
+            .shadow(color: Color(uiColor: .label).opacity(0.3), radius: 7)
+            .onTapGesture { self.handleTapEvent() }
             
             VStack(alignment: .leading, spacing: 4) {
                 Text(model.name)
@@ -99,10 +100,25 @@ struct PopularBrandCellView: View {
                     .lineLimit(1)
                     .foregroundStyle(.secondary)
             }
-            .onTapGesture {
-                let dataDict: [String: PopularBrandModel] = ["model": model]
-                NotificationCenter.default.post(name: Notification.Name("Present_Detail_Screen"), object: nil, userInfo: dataDict)
-            }
+            .onTapGesture { self.handleTapEvent() }
+        }
+        .contextMenu(menuItems: {
+            Button("Open", action: self.handleTapEvent)
+            Button("\(self.model.isFavourite ? "Remove" : "Mark") Favourite", action: { self.model.toggleFavourite() })
+        }, preview: {
+            Image(uiImage: model.image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+        })
+        .scaleEffect(x: isAnimate ? 0.9 : 1.0, y: isAnimate ? 0.9 : 1.0)
+        .animation(.spring(duration: 0.2), value: self.isAnimate)
+    }
+    
+    private func handleTapEvent() {
+        self.isAnimate = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.isAnimate = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { self.onTapEvent() }
         }
     }
 }

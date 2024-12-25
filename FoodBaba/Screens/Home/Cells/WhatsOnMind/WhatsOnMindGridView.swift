@@ -12,21 +12,22 @@ struct WhatsOnMindGridView: View {
     
     let categories: [WhatsOnMindModel]
     
-    private let gridItems: [GridItem] = [
-        .init(.fixed(130), spacing: 5),
-        .init(.fixed(130), spacing: 5),
-    ]
+    @State private var isAnimate: Bool = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             SectionHeaderView(name: "Aakash, what's on your mind?")
             
             ScrollView(.horizontal, showsIndicators: false) {
-                LazyHGrid(rows: gridItems, spacing: 20, content: {
-                    ForEach(self.categories, id: \.id) { category in
-                        self.getCellView(for: category)
+                HStack(alignment: .top, spacing: 20) {
+                    ForEach(categories.chunked(into: 2), id: \.self) { pair in
+                        VStack(spacing: 20) {
+                            ForEach(pair, id: \.id) { category in
+                                getCellView(for: category)
+                            }
+                        }
                     }
-                })
+                }
                 .padding(.horizontal)
             }
         }
@@ -43,6 +44,21 @@ struct WhatsOnMindGridView: View {
             Text(category.name)
                 .font(.caption)
                 .foregroundStyle(.primary)
+        }
+        .onTapGesture { self.handleTapEvent(for: category) }
+    }
+    
+    private func handleTapEvent(for category: WhatsOnMindModel) {
+        self.isAnimate = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.isAnimate = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                let dataDict: [String: Any] = [
+                    "category": category,
+                    "isZoomable": false
+                ]
+                NotificationCenter.default.post(name: Notification.Name("Present_Detail_Screen"), object: nil, userInfo: dataDict)
+            }
         }
     }
 }

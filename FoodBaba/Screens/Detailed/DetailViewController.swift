@@ -26,6 +26,14 @@ final class DetailViewController: UIViewController {
         }
     }
     
+    func setup(for category: WhatsOnMindModel) {
+        DispatchQueue.main.async {
+            self.imageView.image = category.image
+            self.titleLabel.text = category.name
+            self.subTitleLabel.isHidden = true
+        }
+    }
+    
     @IBAction func didTapBackButton(_ sender: UIButton) {
         self.dismiss(animated: true)
     }

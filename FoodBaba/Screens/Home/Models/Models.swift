@@ -90,7 +90,7 @@ struct PopularBrandModel {
 
 
 //MARK: - What's On Your Mind Model
-struct WhatsOnMindModel {
+struct WhatsOnMindModel: Hashable {
     let id: UUID
     let name: String
     let image: UIImage

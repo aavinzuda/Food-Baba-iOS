@@ -14,6 +14,9 @@ struct ImagesSliderView: View {
     let images: [Int]
     
     @State private var selectedImageIndex: Int = 1
+    @State private var index: Int = 1
+    
+    private let timer = Timer.publish(every: 4, on: .main, in: .common).autoconnect()
     
     private let randomGradientArray: [[Color]] = [
         [.blue, .brown],
@@ -32,6 +35,10 @@ struct ImagesSliderView: View {
                 }
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
+            .onReceive(timer, perform: { _ in
+                index = index < images.count ? index + 1 : 1
+                self.selectedImageIndex = images[index - 1]
+            })
             
             self.customPageControl
         }
